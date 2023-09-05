@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 
@@ -8,11 +7,10 @@ import ArticleCard from './ArticleCard';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [queries, setQueries] = useState([]);
 
   useEffect(() => {
     getArticles().then(({ data }) => {
-      setArticles(articles);
+      setArticles(data.articles);
     });
   }, []);
 
