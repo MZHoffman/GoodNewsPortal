@@ -13,6 +13,8 @@ import {
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import FaceIcon from '@mui/icons-material/Face';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 const ArticleCard = ({ article }) => {
   return (
     <Grid item xs={12} md={6} key={article.id}>
@@ -55,6 +57,12 @@ const ArticleCard = ({ article }) => {
                   <Typography>
                     <ClassOutlinedIcon />
                     {article.topic}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography>
+                    <FavoriteBorderIcon />
+                    {article.votes}
                   </Typography>
                 </Grid>
               </Grid>

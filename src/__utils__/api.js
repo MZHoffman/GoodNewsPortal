@@ -13,3 +13,13 @@ export const getComments = (id) => {
     .get(`${urlBase}articles/${id}/comments`)
     .catch((err) => console.log(err));
 };
+export const upvoteArticle = (id) => {
+  return axios
+    .patch(`${urlBase}articles/${id}`, { inc_votes: 1 })
+    .catch((err) => console.log(err));
+};
+export const downvoteArticle = (id) => {
+  return axios
+    .patch(`${urlBase}articles/${id}`, { inc_votes: -1 })
+    .catch((err) => console.log(err));
+};
