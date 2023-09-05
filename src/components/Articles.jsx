@@ -8,7 +8,6 @@ import ArticleCard from './ArticleCard';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  console.log('🚀 ~ Articles ~ articles:', articles);
   const [queries, setQueries] = useState([]);
 
   useEffect(() => {
