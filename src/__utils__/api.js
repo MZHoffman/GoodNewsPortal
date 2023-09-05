@@ -8,3 +8,8 @@ export const getArticles = () => {
 export const getArticle = (id) => {
   return axios.get(`${urlBase}articles/${id}`).catch((err) => console.log(err));
 };
+export const getComments = (id) => {
+  return axios
+    .get(`${urlBase}articles/${id}/comments`)
+    .catch((err) => console.log(err));
+};
