@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 
+import { getArticles } from '../__utils__/api';
+
 import ArticleCard from './ArticleCard';
 
 const Articles = () => {
@@ -10,11 +12,9 @@ const Articles = () => {
   const [queries, setQueries] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('https://news-site-backend-project.onrender.com/api/articles')
-      .then(({ data }) => {
-        setArticles(data.articles);
-      });
+    getArticles().then(({ data }) => {
+      setArticles(articles);
+    });
   }, []);
 
   return (
