@@ -11,13 +11,13 @@ import Article from './components/Article';
 import './App.css';
 
 function App() {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState('cooljmessy');
   return (
     <>
       <Header />
       <Routes>
         <Route path='/' element={<Articles />} />
-        <Route path='/articles/:article_id' element={<Article />} />
+        <Route path='/articles/:article_id' element={<Article user={user} />} />
       </Routes>
       <Menu />
     </>
