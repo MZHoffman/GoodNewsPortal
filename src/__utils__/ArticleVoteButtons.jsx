@@ -10,14 +10,16 @@ const ArticleVoteButtons = ({ article_id, votes }) => {
   const [localVotes, setLocalVotes] = useState(votes);
 
   const handleUpvote = () => {
-    upvoteArticle(article_id);
-    const newVotes = localVotes + 1;
-    setLocalVotes(newVotes);
+    upvoteArticle(article_id).then((res) => {
+      if (typeof res !== 'number') setLocalVotes((currVotes) => currVotes - 1);
+    });
+    setLocalVotes((currVotes) => currVotes + 1);
   };
   const handleDownvote = () => {
-    downvoteArticle(article_id);
-    const newVotes = localVotes - 1;
-    setLocalVotes(newVotes);
+    downvoteArticle(article_id).then((res) => {
+      if (typeof res !== 'number') setLocalVotes((currVotes) => currVotes + 1);
+    });
+    setLocalVotes((currVotes) => currVotes - 1);
   };
   return (
     <ButtonGroup>

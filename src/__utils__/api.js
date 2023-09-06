@@ -16,11 +16,13 @@ export const getComments = (id) => {
 export const upvoteArticle = (id) => {
   return axios
     .patch(`${urlBase}articles/${id}`, { inc_votes: 1 })
+    .then((res) => res.data.article.votes)
     .catch((err) => console.log(err));
 };
 export const downvoteArticle = (id) => {
   return axios
     .patch(`${urlBase}articles/${id}`, { inc_votes: -1 })
+    .then((res) => res.data.article.votes)
     .catch((err) => console.log(err));
 };
 export const postComment = (id, body, username) => {
