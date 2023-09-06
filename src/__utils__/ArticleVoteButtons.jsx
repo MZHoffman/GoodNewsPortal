@@ -7,7 +7,6 @@ import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const ArticleVoteButtons = ({ article_id, votes }) => {
-  console.log('🚀 ~ ArticleVoteButtons ~ votes:', votes);
   const [localVotes, setLocalVotes] = useState(votes);
 
   const handleUpvote = () => {

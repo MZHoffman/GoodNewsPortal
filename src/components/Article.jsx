@@ -20,7 +20,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Comments from './Comments';
 import ArticleVoteButtons from '../__utils__/ArticleVoteButtons';
 
-const Article = () => {
+const Article = ({ user }) => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
   const { article_id } = useParams();
@@ -86,7 +86,7 @@ const Article = () => {
           </Grid>
         </CardContent>
       </Card>
-      <Comments article_id={article_id} />
+      <Comments article_id={article_id} user={user} />
     </>
   );
 };

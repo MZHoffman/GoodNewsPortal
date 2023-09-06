@@ -5,8 +5,9 @@ import { getComments } from '../__utils__/api';
 import { Card, CardHeader } from '@mui/material';
 
 import CommentCard from './CommentCard';
+import CommentForm from './CommentForm';
 
-const Comments = ({ article_id }) => {
+const Comments = ({ article_id, user }) => {
   const [comments, setComments] = useState([]);
   useEffect(() => {
     getComments(article_id).then(({ data }) => setComments(data.comments));
@@ -20,6 +21,7 @@ const Comments = ({ article_id }) => {
           <CommentCard key={comment.comment_id} comment={comment} />
         ))}
       </Card>
+      <CommentForm article_id={article_id} user={user} />
     </section>
   );
 };
