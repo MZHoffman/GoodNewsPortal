@@ -6,7 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import SendIcon from '@mui/icons-material/Send';
 
-const CommentForm = ({ user, article_id }) => {
+const CommentForm = ({ user, article_id, updateComments }) => {
   const [comment, setComment] = useState('');
   const [error, setError] = useState(false);
   const [posting, setPosting] = useState(false);
@@ -17,6 +17,7 @@ const CommentForm = ({ user, article_id }) => {
     if (comment.length < 1) return setError(true);
     setPosting(true);
     postComment(article_id, comment, user).then(() => {
+      updateComments();
       setPosting(false);
       setComment('');
       setOpen(true);
