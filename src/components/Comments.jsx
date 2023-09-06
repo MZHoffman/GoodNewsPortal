@@ -15,13 +15,13 @@ const Comments = ({ article_id, user }) => {
 
   return (
     <section>
+      <CommentForm article_id={article_id} user={user} />
       <Card>
         <CardHeader title='comments:' />
         {comments.map((comment) => (
           <CommentCard key={comment.comment_id} comment={comment} />
         ))}
       </Card>
-      <CommentForm article_id={article_id} user={user} />
     </section>
   );
 };
