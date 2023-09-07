@@ -9,7 +9,6 @@ import DataController from './DataController';
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [params, setParams] = useState([]);
-  console.log('🚀 ~ Articles ~ params:', { params });
 
   useEffect(() => {
     getArticles(params).then(({ data }) => {
