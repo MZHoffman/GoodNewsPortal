@@ -26,7 +26,6 @@ const Comments = ({ article_id, user }) => {
       ...comments,
     ];
     setComments(newComments);
-    console.log('🚀 ~ updateComments ~ newComments:', newComments);
   };
   return (
     <section>
