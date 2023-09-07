@@ -9,12 +9,24 @@ import CommentForm from './CommentForm';
 
 const Comments = ({ article_id, user }) => {
   const [comments, setComments] = useState([]);
-  const [update, setUpdate] = useState(false);
   useEffect(() => {
     getComments(article_id).then(({ data }) => setComments(data.comments));
-  }, [update]);
-  const updateComments = () => {
-    setUpdate(!update);
+  }, []);
+
+  const updateComments = (comment) => {
+    const newComments = [
+      {
+        comment_id: `tempID${Math.floor(Math.random() * 100001)}`,
+        body: comment,
+        article_id: article_id,
+        author: user,
+        votes: 0,
+        created_at: new Date().toISOString(),
+      },
+      ...comments,
+    ];
+    setComments(newComments);
+    console.log('🚀 ~ updateComments ~ newComments:', newComments);
   };
   return (
     <section>
@@ -26,7 +38,7 @@ const Comments = ({ article_id, user }) => {
       <Card>
         <CardHeader title='comments:' />
         {comments.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard key={comment.comment_id} comment={comment} user={user} />
         ))}
       </Card>
     </section>
