@@ -10,6 +10,8 @@ import Select from '@mui/material/Select';
 const DataController = ({ params, setParams }) => {
   const [topics, setTopics] = useState(['All']);
   const [topic, setTopic] = useState('All');
+  const [sort, setSort] = useState('created_at');
+  const [order, setOrder] = useState('DESC');
   useEffect(() => {
     getTopics().then(({ data }) => {
       const topicNames = data.topics.map((topicObj) => topicObj.slug);
@@ -21,11 +23,23 @@ const DataController = ({ params, setParams }) => {
     topic !== 'All'
       ? newParams.append('topic', topic)
       : newParams.delete('topic');
+    sort !== 'created_at'
+      ? newParams.append('sort_by', sort)
+      : newParams.delete('sort_by');
+    order !== 'DESC'
+      ? newParams.append('order', order)
+      : newParams.delete('order');
     setParams(newParams);
-  }, [topic]);
+  }, [topic, sort, order]);
 
   const handleTopicChange = (e) => {
     setTopic(e.target.value);
+  };
+  const handleSortChange = (e) => {
+    setSort(e.target.value);
+  };
+  const handleOrderChange = (e) => {
+    setOrder(e.target.value);
   };
 
   return (
@@ -34,7 +48,7 @@ const DataController = ({ params, setParams }) => {
         <InputLabel id='topics'>Topic</InputLabel>
         <Select
           labelId='topics'
-          id='demo-simple-select'
+          id='topics_select'
           value={topic}
           label='Topic'
           onChange={handleTopicChange}
@@ -44,6 +58,33 @@ const DataController = ({ params, setParams }) => {
               {topicName}
             </MenuItem>
           ))}
+        </Select>
+      </FormControl>
+      <FormControl fullWidth>
+        <InputLabel id='sort'>Sort</InputLabel>
+        <Select
+          labelId='sort'
+          id='sort_select'
+          value={sort}
+          label='Sort'
+          onChange={handleSortChange}
+        >
+          <MenuItem value='created_at'>Publication Time</MenuItem>
+          <MenuItem value='comments_count'>Comments</MenuItem>
+          <MenuItem value='votes'>Votes</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl fullWidth>
+        <InputLabel id='order'>Order By</InputLabel>
+        <Select
+          labelId='order'
+          id='order_select'
+          value={order}
+          label='Order'
+          onChange={handleOrderChange}
+        >
+          <MenuItem value='DESC'>Descending</MenuItem>
+          <MenuItem value='ASC'>Ascending</MenuItem>
         </Select>
       </FormControl>
     </form>
