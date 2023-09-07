@@ -1,8 +1,11 @@
 import axios from 'axios';
 
 const urlBase = 'https://news-site-backend-project.onrender.com/api/';
-export const getArticles = () => {
-  return axios.get(`${urlBase}articles`).catch((err) => console.log(err));
+// const urlBase = 'http://localhost:9090/api/';
+export const getArticles = (params) => {
+  return axios
+    .get(`${urlBase}articles`, { params })
+    .catch((err) => console.log(err));
 };
 
 export const getArticle = (id) => {
@@ -32,4 +35,7 @@ export const postComment = (id, body, username) => {
       username: username,
     })
     .catch((err) => console.log(err));
+};
+export const getTopics = () => {
+  return axios.get(`${urlBase}topics`).catch((err) => console.log(err));
 };
