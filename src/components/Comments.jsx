@@ -14,17 +14,8 @@ const Comments = ({ article_id, user }) => {
   }, []);
 
   const updateComments = (comment) => {
-    const newComments = [
-      {
-        comment_id: `tempID${Math.floor(Math.random() * 100001)}`,
-        body: comment,
-        article_id: article_id,
-        author: user,
-        votes: 0,
-        created_at: new Date().toISOString(),
-      },
-      ...comments,
-    ];
+    console.log('🚀 ~ updateComments ~ comment:', comment);
+    const newComments = [comment, ...comments];
     setComments(newComments);
   };
   return (

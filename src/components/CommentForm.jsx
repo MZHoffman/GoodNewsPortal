@@ -16,8 +16,8 @@ const CommentForm = ({ user, article_id, updateComments }) => {
     e.preventDefault();
     if (comment.length < 1) return setError(true);
     setPosting(true);
-    updateComments(comment);
-    postComment(article_id, comment, user).then(() => {
+    postComment(article_id, comment, user).then(({ data }) => {
+      updateComments(data.comment);
       setPosting(false);
       setComment('');
       setOpen(true);
