@@ -19,20 +19,28 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import Comments from './Comments';
 import ArticleVoteButtons from '../__utils__/ArticleVoteButtons';
+import ArticleError from './ArticleError';
 
 const Article = ({ user }) => {
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { article_id } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    getArticle(article_id).then(({ data }) => {
-      setArticle(data.article);
-      setLoading(false);
-    });
+    getArticle(article_id)
+      .then(({ data }) => {
+        setArticle(data.article);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setError(err);
+      });
   }, []);
   if (loading) return <CircularProgress />;
+  if (error) return <ArticleError />;
   return (
     <>
       <Card>

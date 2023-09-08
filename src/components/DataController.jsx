@@ -15,7 +15,8 @@ const DataController = ({ params, setParams }) => {
   useEffect(() => {
     getTopics().then(({ data }) => {
       const topicNames = data.topics.map((topicObj) => topicObj.slug);
-      setTopics(['All', ...topicNames]);
+      setTopics(['boom', 'All', ...topicNames]);
+      //adding "boom" for testing topic error. Styling will wil come after
     });
   }, []);
   useEffect(() => {
