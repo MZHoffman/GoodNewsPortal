@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Grid, Paper, Snackbar, Alert } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { CalendarMonth, ThumbsUpDown, Face, Delete } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
@@ -30,24 +30,26 @@ const CommentCard = ({ comment, user, removeCommentHandler, setOpen }) => {
   );
 
   return (
-    <Paper style={{ padding: '40px 20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <Face /> {comment.author}
+    <>
+      <Paper style={{ padding: '40px 20px' }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Face /> {comment.author}
+          </Grid>
+          <Grid item xs={12}>
+            {comment.body}
+          </Grid>
+          <Grid item xs={12}>
+            <ThumbsUpDown /> {comment.votes}
+          </Grid>
+          <Grid item xs={12}>
+            <CalendarMonth />
+            {new Date(comment.created_at).toLocaleDateString()}
+          </Grid>
+          {comment.author === user ? deleteButton : ''}
         </Grid>
-        <Grid item xs={12}>
-          {comment.body}
-        </Grid>
-        <Grid item xs={12}>
-          <ThumbsUpDown /> {comment.votes}
-        </Grid>
-        <Grid item xs={12}>
-          <CalendarMonth />
-          {comment.created_at}
-        </Grid>
-        {comment.author === user ? deleteButton : ''}
-      </Grid>
-    </Paper>
+      </Paper>
+    </>
   );
 };
 

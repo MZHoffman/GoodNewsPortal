@@ -6,6 +6,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Grid } from '@mui/material';
 
 const DataController = ({ params, setParams }) => {
   const [topics, setTopics] = useState(['All']);
@@ -45,49 +46,57 @@ const DataController = ({ params, setParams }) => {
 
   return (
     <form>
-      <FormControl fullWidth>
-        <InputLabel id='topics'>Topic</InputLabel>
-        <Select
-          labelId='topics'
-          id='topics_select'
-          value={topic}
-          label='Topic'
-          onChange={handleTopicChange}
-        >
-          {topics.map((topicName) => (
-            <MenuItem key={topicName} value={topicName}>
-              {topicName}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel id='sort'>Sort</InputLabel>
-        <Select
-          labelId='sort'
-          id='sort_select'
-          value={sort}
-          label='Sort'
-          onChange={handleSortChange}
-        >
-          <MenuItem value='created_at'>Publication Time</MenuItem>
-          <MenuItem value='comments_count'>Comments</MenuItem>
-          <MenuItem value='votes'>Votes</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl fullWidth>
-        <InputLabel id='order'>Order By</InputLabel>
-        <Select
-          labelId='order'
-          id='order_select'
-          value={order}
-          label='Order'
-          onChange={handleOrderChange}
-        >
-          <MenuItem value='DESC'>Descending</MenuItem>
-          <MenuItem value='ASC'>Ascending</MenuItem>
-        </Select>
-      </FormControl>
+      <Grid container spacing={2}>
+        <Grid item md={4} sm={4} xs={12}>
+          <FormControl fullWidth>
+            <InputLabel id='topics'>Topic</InputLabel>
+            <Select
+              labelId='topics'
+              id='topics_select'
+              value={topic}
+              label='Topic'
+              onChange={handleTopicChange}
+            >
+              {topics.map((topicName) => (
+                <MenuItem key={topicName} value={topicName}>
+                  {topicName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <FormControl fullWidth>
+            <InputLabel id='sort'>Sort</InputLabel>
+            <Select
+              labelId='sort'
+              id='sort_select'
+              value={sort}
+              label='Sort'
+              onChange={handleSortChange}
+            >
+              <MenuItem value='created_at'>Publication Time</MenuItem>
+              <MenuItem value='comments_count'>Comments</MenuItem>
+              <MenuItem value='votes'>Votes</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item md={4} sm={4} xs={12}>
+          <FormControl fullWidth>
+            <InputLabel id='order'>Order By</InputLabel>
+            <Select
+              labelId='order'
+              id='order_select'
+              value={order}
+              label='Order'
+              onChange={handleOrderChange}
+            >
+              <MenuItem value='DESC'>Descending</MenuItem>
+              <MenuItem value='ASC'>Ascending</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
     </form>
   );
 };

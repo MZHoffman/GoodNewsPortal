@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { getComments } from '../__utils__/api';
 
-import { Card, CardHeader, Snackbar, Alert } from '@mui/material';
+import { Card, CardHeader, Snackbar, Alert, Divider } from '@mui/material';
 
 import CommentCard from './CommentCard';
 import CommentForm from './CommentForm';
@@ -35,18 +35,20 @@ const Comments = ({ article_id, user }) => {
         user={user}
         updateComments={updateComments}
       />
-      <Card>
-        <CardHeader title='comments:' />
-        {comments.map((comment) => (
-          <CommentCard
-            key={comment.comment_id}
-            comment={comment}
-            user={user}
-            setOpen={setOpen}
-            removeCommentHandler={removeCommentHandler}
-          />
-        ))}
-      </Card>
+      {comments.map((comment) => (
+        <>
+          <Card>
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              user={user}
+              setOpen={setOpen}
+              removeCommentHandler={removeCommentHandler}
+            />
+          </Card>
+          <Divider sx={{ margin: 3 }} />
+        </>
+      ))}
       <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
         <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
           Comment Deleted!

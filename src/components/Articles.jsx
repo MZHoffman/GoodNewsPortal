@@ -28,13 +28,19 @@ const Articles = () => {
 
   return (
     <main>
-      <DataController params={params} setParams={setParams} />
-      {loading && <CircularProgress />}
-      {error && <TopicError />}
       <Grid container spacing={2}>
-        {articles.map((article) => (
-          <ArticleCard key={article.article_id} article={article} />
-        ))}
+        <Grid item xs={12}>
+          <DataController params={params} setParams={setParams} />
+        </Grid>
+        <Grid item xs={12}>
+          {loading && <CircularProgress />}
+          {error && <TopicError />}
+          <Grid container spacing={2}>
+            {articles.map((article) => (
+              <ArticleCard key={article.article_id} article={article} />
+            ))}
+          </Grid>
+        </Grid>
       </Grid>
     </main>
   );

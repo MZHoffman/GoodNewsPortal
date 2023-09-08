@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { upvoteArticle, downvoteArticle } from './api';
-import { ButtonGroup, IconButton } from '@mui/material';
+import { ButtonGroup, IconButton, Grid, Typography } from '@mui/material';
 
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -23,13 +23,25 @@ const ArticleVoteButtons = ({ article_id, votes }) => {
   };
   return (
     <ButtonGroup>
-      <IconButton onClick={handleUpvote}>
-        <FavoriteIcon />
-      </IconButton>
-      {localVotes}
-      <IconButton onClick={handleDownvote}>
-        <HeartBrokenIcon />
-      </IconButton>
+      <Grid
+        container
+        spacing={0}
+        sx={{ alignItems: 'center', dispaly: 'flex' }}
+      >
+        <Grid item>
+          <IconButton onClick={handleUpvote}>
+            <FavoriteIcon />
+          </IconButton>
+        </Grid>
+        <Grid item>
+          <Typography>{localVotes}</Typography>
+        </Grid>
+        <Grid item>
+          <IconButton onClick={handleDownvote}>
+            <HeartBrokenIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
     </ButtonGroup>
   );
 };
