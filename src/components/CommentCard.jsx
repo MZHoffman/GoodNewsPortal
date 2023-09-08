@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
-import { Grid, Paper, Button } from '@mui/material';
+import { Grid, Paper, Snackbar, Alert } from '@mui/material';
 import { CalendarMonth, ThumbsUpDown, Face, Delete } from '@mui/icons-material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import { deleteComment } from '../__utils__/api';
-const CommentCard = ({ comment, user, removeCommentHandler }) => {
+const CommentCard = ({ comment, user, removeCommentHandler, setOpen }) => {
   const [deleting, setDeleting] = useState(false);
   const handleDelete = () => {
     setDeleting(true);
     deleteComment(comment.comment_id).then(({ status }) => {
       setDeleting(false);
+      setOpen(true);
       if (status === 204) removeCommentHandler(comment.comment_id);
     });
   };
