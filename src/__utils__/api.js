@@ -39,3 +39,8 @@ export const postComment = (id, body, username) => {
 export const getTopics = () => {
   return axios.get(`${urlBase}topics`).catch((err) => console.log(err));
 };
+export const deleteComment = (comment_id) => {
+  return axios
+    .delete(`${urlBase}comments/${comment_id}`)
+    .catch((err) => console.log(err));
+};

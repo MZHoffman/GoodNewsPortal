@@ -14,8 +14,13 @@ const Comments = ({ article_id, user }) => {
   }, []);
 
   const updateComments = (comment) => {
-    console.log('🚀 ~ updateComments ~ comment:', comment);
     const newComments = [comment, ...comments];
+    setComments(newComments);
+  };
+  const removeCommentHandler = (comment_id) => {
+    const newComments = comments.filter(
+      (comment) => comment.comment_id !== comment_id
+    );
     setComments(newComments);
   };
   return (
@@ -28,7 +33,12 @@ const Comments = ({ article_id, user }) => {
       <Card>
         <CardHeader title='comments:' />
         {comments.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} user={user} />
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            user={user}
+            removeCommentHandler={removeCommentHandler}
+          />
         ))}
       </Card>
     </section>
