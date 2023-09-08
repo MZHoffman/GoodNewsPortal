@@ -3,9 +3,7 @@ import axios from 'axios';
 // const urlBase = 'https://news-site-backend-project.onrender.com/api/';
 const urlBase = 'http://localhost:9090/api/';
 export const getArticles = (params) => {
-  return axios
-    .get(`${urlBase}articles`, { params })
-    .catch((err) => console.log(err));
+  return axios.get(`${urlBase}articles`, { params });
 };
 
 export const getArticle = (id) => {
