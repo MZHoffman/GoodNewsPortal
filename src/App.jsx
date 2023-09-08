@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import Articles from './components/Articles';
 import Article from './components/Article';
+import PathError from './components/PathError';
 
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Articles />} />
         <Route path='/articles/:article_id' element={<Article user={user} />} />
+        <Route path='*' element={<PathError />} />
       </Routes>
       <Menu />
     </>
