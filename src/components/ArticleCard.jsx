@@ -17,19 +17,18 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ArticleCard = ({ article }) => {
   return (
-    <Grid item xs={12} md={6} key={article.id}>
+    <Grid item xs={12} sm={6} md={4} key={article.id}>
       <Card>
         <CardActionArea>
           <Link to={`/articles/${article.article_id}`}>
             <CardMedia
               component='img'
-              height='194'
               image={article.article_img_url}
               alt={article.title}
             />
             <CardHeader
               title={article.title}
-              subheader={Date(article.created_at)}
+              subheader={new Date(article.created_at).toLocaleDateString()}
             />
 
             <CardContent>
@@ -39,31 +38,44 @@ const ArticleCard = ({ article }) => {
                 sx={{ alignItems: 'center', dispaly: 'flex' }}
               >
                 <Grid item>
-                  <Typography>
-                    <FaceIcon />
-                  </Typography>
+                  <Grid container spacing={1}>
+                    <Grid item>
+                      <FaceIcon />
+                    </Grid>
+                    <Grid item>
+                      <Typography>{article.author}</Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item>
-                  <Typography>{article.author}</Typography>
-                </Grid>
-
-                <Grid item>
-                  <Typography>
-                    <CommentOutlinedIcon />
-                    {article.comments_count}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography>
-                    <ClassOutlinedIcon />
-                    {article.topic}
-                  </Typography>
+                  <Grid container spacing={1}>
+                    <Grid item>
+                      <CommentOutlinedIcon />
+                    </Grid>
+                    <Grid item>
+                      <Typography>{article.comments_count}</Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item>
-                  <Typography>
-                    <FavoriteBorderIcon />
-                    {article.votes}
-                  </Typography>
+                  <Grid container spacing={1}>
+                    <Grid item>
+                      <ClassOutlinedIcon />
+                    </Grid>
+                    <Grid item>
+                      <Typography>{article.topic}</Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container spacing={1}>
+                    <Grid item>
+                      <FavoriteBorderIcon />
+                    </Grid>
+                    <Grid item>
+                      <Typography>{article.votes}</Typography>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Grid>
             </CardContent>
