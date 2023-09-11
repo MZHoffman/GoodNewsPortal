@@ -53,7 +53,6 @@ const Article = ({ user }) => {
           title={article.title}
           subheader={new Date(article.created_at).toLocaleDateString()}
         />
-
         <CardContent>
           <Typography>{article.body}</Typography>
           <Divider sx={{ margin: 3 }} />

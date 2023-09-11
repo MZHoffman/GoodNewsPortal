@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { postComment } from '../__utils__/api';
-import { TextField, Snackbar, Alert } from '@mui/material';
+import { TextField, Snackbar, Alert, Paper } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import SendIcon from '@mui/icons-material/Send';
@@ -31,34 +31,41 @@ const CommentForm = ({ user, article_id, updateComments }) => {
     setOpen(false);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        id='comment-field'
-        label='Comment'
-        multiline
-        rows={4}
-        fullWidth
-        value={comment}
-        onChange={handleChange}
-        error={error}
-        disabled={posting}
-        helperText={error ? 'Comment must not be empty!' : ''}
-      />
-      <LoadingButton
-        type='submit'
-        endIcon={<SendIcon />}
-        loading={posting}
-        loadingPosition='end'
-        variant='contained'
-      >
-        Post
-      </LoadingButton>
-      <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
-          Comment Posted!
-        </Alert>
-      </Snackbar>
-    </form>
+    <Paper elevetion={3}>
+      <form onSubmit={handleSubmit} style={{ padding: 34, margin: 40 }}>
+        <TextField
+          margin='normal'
+          id='comment-field'
+          label='Comment'
+          multiline
+          rows={4}
+          fullWidth
+          value={comment}
+          onChange={handleChange}
+          error={error}
+          disabled={posting}
+          helperText={error ? 'Comment must not be empty!' : ''}
+        />
+        <LoadingButton
+          type='submit'
+          endIcon={<SendIcon />}
+          loading={posting}
+          loadingPosition='end'
+          variant='contained'
+        >
+          Post
+        </LoadingButton>
+        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity='success'
+            sx={{ width: '100%' }}
+          >
+            Comment Posted!
+          </Alert>
+        </Snackbar>
+      </form>
+    </Paper>
   );
 };
 
